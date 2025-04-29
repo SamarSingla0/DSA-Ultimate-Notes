@@ -1,0 +1,20 @@
+brute force
+using the linear search we can number of frequency for each element and check element that appeard once or twice
+
+better approch
+it can be achieved by using the hashing (hashvector) or  mapping
+go with mapping easy to handle
+
+
+optimal approch
+int getSingleElement(vector<int> &arr) {
+    //size of the array:
+    int n = arr.size();
+
+    // XOR all the elements:
+    int xorr = 0;
+    for (int i = 0; i < n; i++) {
+        xorr = xorr ^ arr[i];
+    }
+    return xorr;
+}
