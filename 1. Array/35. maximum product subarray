@@ -1,0 +1,28 @@
+brute force'
+using the three loops to calcultae the maximum product
+we will find product of all the possible subarray possible in array , formula used for 3 loop will be
+int prod = 1;
+            for(int k=i;k<=j;k++) 
+                prod *= nums[k];
+            result = max(result,prod);    
+        }
+
+better approch
+using two loops and rest will be same as above
+
+
+optimal approch
+int maxProductSubArray(vector<int> &arr) {
+    int n = arr.size(); //size of array.
+
+    int pre = 1, suff = 1;
+    int ans = INT_MIN;
+    for (int i = 0; i < n; i++) {
+        if (pre == 0) pre = 1;
+        if (suff == 0) suff = 1;
+        pre *= arr[i];
+        suff *= arr[n - i - 1];
+        ans = max(ans, max(pre, suff));
+    }
+    return ans;
+}
