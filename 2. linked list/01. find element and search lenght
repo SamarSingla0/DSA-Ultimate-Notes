@@ -1,1 +1,25 @@
+// length of linkedlist
+int lengthOfLinkedList(Node* head) {
+    Node* temp = head;
+    int cnt = 0;
+    // Traverse the linked list and count nodes
+    while (temp != NULL) {
+        temp = temp->next;
+        cnt++; // increment cnt for every node traversed
+    }
+    return cnt;
+}
 
+//search an element in linkedlist
+int checkifPresent(Node* head, int desiredElement) {
+    Node* temp = head;
+
+    // Traverse the linked list
+    while (temp != nullptr) {
+        if (temp->data == desiredElement)
+            return 1;  
+        temp = temp->next;
+    }
+
+    return 0;
+}
