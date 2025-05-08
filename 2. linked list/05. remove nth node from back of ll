@@ -1,0 +1,53 @@
+brute force
+Node* DeleteNthNodefromEnd(Node* head, int N) {
+    if (head == NULL) {
+        return NULL;
+    }
+    int cnt = 0;
+    Node* temp = head;
+    while (temp != NULL) {
+        cnt++;
+        temp = temp->next;
+    }
+
+   
+    if (cnt == N) {
+        Node* newhead = head->next;
+        delete (head);
+        return newhead;
+    }
+
+    int res = cnt - N;
+    temp = head;
+    while (temp != NULL) {
+        res--;
+        if (res == 0) {
+            break;
+        }
+        temp = temp->next;
+    }
+    Node* delNode = temp->next;
+    temp->next = temp->next->next;
+    delete (delNode);
+    return head;
+}
+
+optimal approch
+Node* DeleteNthNodefromEnd(Node* head, int N) {
+    Node* fastp = head;
+    Node* slowp = head;
+
+    for (int i = 0; i < N; i++)
+        fastp = fastp->next;
+    if (fastp == NULL)
+        return head->next;
+
+    while (fastp->next != NULL) {
+        fastp = fastp->next;
+        slowp = slowp->next;
+    }
+    Node* delNode = slowp->next;
+    slowp->next = slowp->next->next;
+    delete delNode;
+    return head;
+}
