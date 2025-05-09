@@ -1,0 +1,29 @@
+brute force 
+bool detectLoop(Node* head) {
+    Node* temp = head; 
+   unordered_map<Node*, int> nodeMap;  
+
+    while (temp != nullptr) {
+        if (nodeMap.find(temp) != nodeMap.end()) {
+            return true;
+        }
+        nodeMap[temp] = 1;
+        temp = temp->next;  
+    }
+    return false;
+}
+
+optimal approch
+bool detectCycle(Node* head) {
+    Node* slow = head;
+    Node* fast = head;
+
+    while (fast != nullptr && fast->next != nullptr) {
+        slow = slow->next;
+        fast = fast->next->next;
+        if (slow == fast) {
+            return true;  // Loop detected
+        }
+    }
+    return false;
+}
