@@ -1,0 +1,35 @@
+brute force
+Node* detectLoop(Node* head) {
+    
+    Node* temp = head;
+    
+        unordered_map<Node*, int> mp;
+        while(temp!=NULL){
+        if(mp.count(temp)!=0){
+            return temp;
+        }
+        mp[temp] = 1;
+        temp = temp->next;
+    }
+    return nullptr; 
+}
+
+optimal approch
+Node* firstNode(Node* head) {
+    Node* slow = head;  
+    Node* fast = head;  
+
+    while (fast != NULL && fast->next != NULL) {
+        slow = slow->next;        
+        fast = fast->next->next;  
+        if (slow == fast) {
+            slow = head; 
+            while (slow != fast) {
+                slow = slow->next;  
+                fast = fast->next;  
+            }
+            return slow;  
+        }
+    }
+    return NULL; 
+}
